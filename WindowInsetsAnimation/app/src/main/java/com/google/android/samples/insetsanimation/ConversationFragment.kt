@@ -98,6 +98,13 @@ class ConversationFragment : Fragment() {
                 deferredInsetTypes = WindowInsets.Type.ime()
             )
         )
+        binding.emptyMessageHolder.setWindowInsetsAnimationCallback(
+            TranslateDeferringInsetsAnimationCallback(
+                view = binding.emptyMessageHolder,
+                persistentInsetTypes = WindowInsets.Type.systemBars(),
+                deferredInsetTypes = WindowInsets.Type.ime()
+            )
+        )
 
         /**
          * 2.5) We also want to make sure that our EditText is focused once the IME
