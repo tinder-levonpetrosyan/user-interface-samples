@@ -15,8 +15,7 @@
   ~ limitations under the License.
 -->
 
-<com.google.android.samples.insetsanimation.InsetsAnimationLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,6 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="@dimen/spacing_micro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_main">
 
         <ImageView
@@ -51,15 +53,49 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/conversation_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingVertical="@dimen/spacing_small"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/message_holder"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:reverseLayout="true"
         tools:itemCount="20"
         tools:listitem="@layout/message_bubble_other" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/empty_message_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/message_holder"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_videocam"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Some introduction text bla bla bla"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/message_holder"
@@ -67,7 +103,10 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorSurface"
         android:elevation="@dimen/spacing_micro"
-        android:padding="@dimen/spacing_small">
+        android:padding="@dimen/spacing_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -85,6 +124,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
+            android:id="@+id/send_button"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,5 +136,4 @@
             app:tint="?attr/colorPrimary" />
 
     </LinearLayout>
-
-</com.google.android.samples.insetsanimation.InsetsAnimationLinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

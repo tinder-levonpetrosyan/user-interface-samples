@@ -132,6 +132,13 @@ class ConversationFragment : Fragment() {
          * class bundled in this sample called [SimpleImeAnimationController], which simplifies
          * much of the mechanics for controlling a [WindowInsetsAnimation].
          */
+
+
+        binding.sendButton.setOnClickListener {
+            binding.conversationRecyclerview.visibility = View.VISIBLE
+            binding.emptyMessageHolder.visibility = View.GONE
+        }
+
     }
 
     override fun onDestroyView() {
